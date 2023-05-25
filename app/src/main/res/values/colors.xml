@@ -9,4 +9,15 @@
     <color name="text_title">#004038</color>
     <color name="process">#61FFB74B</color>
     <color name="cancel">#52E21717</color>
+
+    <color name="shade_1">#CC0D8E7D</color>
+    <color name="shade_2">#990B7063</color>
+    <color name="shade_3">#66084D3C</color>
+    <color name="shade_4">#3304261E</color>
+
+    <!-- Tints -->
+    <color name="tint_1">#FF3FD9BF</color>
+    <color name="tint_2">#FF73E7D1</color>
+    <color name="tint_3">#FFA6F4E3</color>
+    <color name="tint_4">#FFD9FBF5</color>
 </resources>
