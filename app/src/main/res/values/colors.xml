@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="back_ground">#FAFAFA</color>
+    <color name="prim">#10BAA5</color>
+    <color name="sec1">#D6FFFA</color>
+    <color name="sec2">#EFFFFD</color>
+    <color name="text_title">#004038</color>
+    <color name="process">#61FFB74B</color>
+    <color name="cancel">#52E21717</color>
 </resources>

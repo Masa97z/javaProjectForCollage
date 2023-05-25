@@ -2,6 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Minisilm" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/prim</item>
+        <item name="colorSecondary">@color/sec1</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
