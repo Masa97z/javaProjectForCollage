@@ -13,14 +13,12 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.masa.minisilm.R;
+import com.masa.minisilm.databinding.FragmentAddBinding;
 
 
 public class AddFragment extends Fragment {
 
     private FragmentAddBinding binding;
-    private Button addTask;
-    private Button addNote;
-    private FrameLayout fragmentContainer;
     private Fragment currentFragment;
 
     @Override
