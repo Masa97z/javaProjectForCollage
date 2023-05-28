@@ -7,11 +7,10 @@
     tools:context=".Ui.Add_TaskFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_title"
+        android:id="@+id/inputTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Title"
-
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_title">
+        app:layout_constraintTop_toBottomOf="@+id/inputTitle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -44,23 +43,16 @@
         android:id="@+id/inputDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="3/4/2023"
-        app:endIconMode="custom"
-        app:endIconDrawable="@drawable/dateicon"
         android:layout_marginTop="24dp"
+        android:hint="23\2023"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-
-            />
-
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/add_task_button"
         android:layout_width="wrap_content"
