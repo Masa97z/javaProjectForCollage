@@ -3,89 +3,129 @@ package com.masa.minisilm.Data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
+
 import java.util.ArrayList;
 
-
 public class SqlDB extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "minislam.db";
+    private static final int DATABASE_VERSION = 1;
 
-    public static final String DataBaseName = "task.db";
-
-    public SqlDB(Context ctx) {
-        super(ctx, DataBaseName, null, 1);
+    public SqlDB(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    createTable();
+        String noteQ = "CREATE TABLE noteList ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "title TEXT,"
+                + "des TEXT"
+                + ")";
+        db.execSQL(noteQ);
+
+        createTable(db);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if EXISTS TASK");
-        onCreate(db);
+        db.execSQL("drop table if EXISTS taskList");
+        createTable(db);
+        db.execSQL("drop table if EXISTS noteList");
+        createTable(db);
     }
-    private void createTable() {
-        SQLiteDatabase sql = getWritableDatabase();
-        String createTableQuery = "CREATE TABLE IF NOT EXISTS TASK ("
+
+    public ArrayList<DataSourse> getData() {
+        ArrayList<DataSourse> array = new ArrayList();
+
+            SQLiteDatabase sql = this.getReadableDatabase();
+            Cursor cursor = sql.rawQuery("SELECT * FROM taskList", null);
+            cursor.moveToFirst();
+            while (cursor.isAfterLast() == false) {
+                array.add(new DataSourse(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getLong(3)));
+                cursor.moveToNext();
+            }
+        return array;
+    }
+
+    public void createTable(SQLiteDatabase sql){
+
+        String createTableQuery = "CREATE TABLE taskList ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "title TEXT,"
                 + "des TEXT,"
                 + "date TEXT"
                 + ")";
         sql.execSQL(createTableQuery);
-        sql.close(); // Close the database connection
     }
+    public ArrayList<NoteSourse> getDataNote() {
+        ArrayList<NoteSourse> note = new ArrayList();
 
-    public ArrayList<DataSourse> getData() {
-        ArrayList<DataSourse> array = new ArrayList();
         SQLiteDatabase sql = this.getReadableDatabase();
-        Cursor cursor = sql.rawQuery("SELECT * FROM TASK", null);
+        Cursor cursor = sql.rawQuery("SELECT * FROM noteList", null);
         cursor.moveToFirst();
         while (cursor.isAfterLast() == false) {
-            array.add(new DataSourse(
+            note.add(new NoteSourse(
                     cursor.getInt(0),
                     cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3)));
+                    cursor.getString(2)));
+
             cursor.moveToNext();
         }
-        return array;
+        return note;
     }
 
-    public String insert(String title, String des, String date) {
-        createTable(); // Create the table if it doesn't exist
+    public void insertNote(String title, String des) {
+
+
+        SQLiteDatabase sql;
+        sql = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("title", title);
+        values.put("des", des);
+
+
+        sql.insert("noteList", null, values);
+
+    }
+    public void insert(String title, String des, Long date) {
+
+
+            SQLiteDatabase sql;
+            sql = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("title", title);
+            values.put("des", des);
+            values.put("date", date);
+
+             sql.insert("taskList", null, values);
+
+    }
+
+    public void updateitem(String id, String title, String des, String date) {
+
         SQLiteDatabase sql = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("title", title);
         values.put("des", des);
         values.put("date", date);
-        long res = sql.insert("TASK", null, values);
-        sql.close(); // Close the database connection
-        if (res == -1) {
-            return "Error";
-        } else {
-            return "Insert Table";
-        }
-    }
-
-    public void update(String id, String title, String des, String date) {
-
-        SQLiteDatabase sql = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("title", title);
-        values.put("des", des);
-        values.put("date", date);
-        sql.update("TASK", null, "id?", new String[]{id});
+        sql.update("taskList", null, "id?", new String[]{id});
     }
 
     public void deleteItem (String id){
         SQLiteDatabase sql = getWritableDatabase();
-        sql.delete("TASK", "id?", new String[]{id});
+        sql.delete("taskList", "id?", new String[]{id});
 
     }
-
 
 }
