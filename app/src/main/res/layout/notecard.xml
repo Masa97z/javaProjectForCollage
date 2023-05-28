@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/sec2"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    tools:context=".Ui.CardDone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        >
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Title"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/des"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="content" />
+
+</LinearLayout>
