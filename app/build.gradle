@@ -39,4 +39,14 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.espresso.core
+
+    implementation "androidx.room:room-runtime:2.3.0"
+    annotationProcessor "androidx.room:room-compiler:2.3.0"
+
+    // Optional: Kotlin extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.3.0"
+    implementation 'androidx.sqlite:sqlite:2.2.0'
+
+    implementation 'com.github.blackfizz:eazegraph:1.2.5l@aar'
+    implementation 'com.nineoldandroids:library:2.4.0'
 }
