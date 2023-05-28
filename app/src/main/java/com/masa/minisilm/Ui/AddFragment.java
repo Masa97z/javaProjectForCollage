@@ -1,5 +1,6 @@
 package com.masa.minisilm.Ui;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.masa.minisilm.Data.SqlDB;
 import com.masa.minisilm.R;
 import com.masa.minisilm.databinding.FragmentAddBinding;
 
@@ -20,7 +22,10 @@ public class AddFragment extends Fragment {
 
     private FragmentAddBinding binding;
     private Fragment currentFragment;
-
+    private SqlDB sqlDB ;
+    public AddFragment(Context context){
+        sqlDB = new SqlDB(context);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,20 +43,20 @@ public class AddFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        currentFragment = new Add_TaskFragment();
+        currentFragment = new Add_TaskFragment(requireContext());
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.fragmentadd, currentFragment)
                 .commit();
 
         binding.addTask.setOnClickListener(v -> {
-            currentFragment = new Add_TaskFragment();
+            currentFragment = new Add_TaskFragment(requireContext());
             getChildFragmentManager().beginTransaction()
                     .replace(R.id.fragmentadd, currentFragment)
                     .commit();
         });
         binding.addNote.setOnClickListener(v -> {
-            // Switch to Fragment2
-            currentFragment = new Add_NoteFragment();
+
+            currentFragment = new Add_NoteFragment(requireContext());
             getChildFragmentManager().beginTransaction()
                     .replace(R.id.fragmentadd, currentFragment)
                     .commit();
