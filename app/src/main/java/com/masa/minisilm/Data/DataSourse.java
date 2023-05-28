@@ -1,17 +1,16 @@
 package com.masa.minisilm.Data;
 
-import java.util.Date;
 
 public class DataSourse {
     private int id;
     private String title;
     private String description;
-    private String date;
+    private Long date;
     public DataSourse(
             int id,
             String title,
             String description,
-            String date)
+            Long date)
     {
         this.id = id;
         this.title = title;
@@ -31,7 +30,7 @@ public class DataSourse {
         return description;
     }
 
-    public String getDate() {
+    public Long getDate() {
         return date;
     }
 
@@ -47,7 +46,7 @@ public class DataSourse {
         this.description = description;
     }
 
-    public void setDate(String date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 }
